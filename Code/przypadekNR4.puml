@@ -1,0 +1,29 @@
+@startuml
+actor Klient
+actor "System SI" as System
+actor Administrator
+
+rectangle "System Siłowni" {
+
+    usecase "Ocena jakości usług" as UC4
+    usecase "Wyświetlenie formularza oceny" as UC4a
+    usecase "Zapisanie opinii i analiza statystyk" as UC4b
+    usecase "Pominięcie oceny" as UC4c
+    usecase "Analiza negatywnych opinii" as UC4d
+
+    ' Połączenia <<include>> (obowiązkowe kroki)
+    UC4 --> UC4a : <<include>>
+    UC4 --> UC4b : <<include>>
+
+    ' Połączenia <<extend>> (opcjonalne kroki)
+    UC4c ..|> UC4a : <<extend>>
+    UC4d ..|> UC4b : <<extend>>
+
+    ' Połączenia aktorów z przypadkami
+    Klient --> UC4
+    System --> UC4a
+    System --> UC4b
+    Klient --> UC4c
+    Administrator --> UC4d
+}
+@enduml

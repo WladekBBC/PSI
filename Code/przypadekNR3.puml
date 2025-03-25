@@ -1,0 +1,27 @@
+@startuml
+actor Klient
+actor "System SI" as System
+
+rectangle "System Siłowni" {
+
+    usecase "Korzystanie z programu lojalnościowego" as UC3
+    usecase "Rejestracja wejścia klienta" as UC3a
+    usecase "Przyznanie punktów lojalnościowych" as UC3b
+    usecase "Wymiana punktów na nagrody" as UC3c
+    usecase "Sprawdzenie aktualnego stanu punktów" as UC3d
+
+    ' Połączenia <<include>> (obowiązkowe kroki)
+    UC3 --> UC3a : <<include>>
+    UC3 --> UC3b : <<include>>
+
+    ' Połączenia <<extend>> (opcjonalne kroki)
+    UC3d ..|> UC3c : <<extend>>
+
+    ' Połączenia aktorów z przypadkami
+    Klient --> UC3
+    System --> UC3a
+    System --> UC3b
+    Klient --> UC3c
+    System --> UC3d
+}
+@enduml

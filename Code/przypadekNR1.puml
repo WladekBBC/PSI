@@ -1,0 +1,31 @@
+@startuml
+actor Klient
+actor Recepcjonista
+
+rectangle "System Siłowni" {
+    
+    usecase "Rejestracja klienta" as UC1
+    usecase "Wprowadzenie danych klienta" as UC1a
+    usecase "Wybór karnetu i płatność" as UC1b
+    usecase "Generowanie karty członkowskiej" as UC1c
+    usecase "Dodanie klienta z kartą partnerską" as UC1d
+    usecase "Korekta błędnych danych" as UC1e
+
+    ' Połączenia <<include>> (obowiązkowe kroki)
+    UC1 --> UC1a : <<include>>
+    UC1 --> UC1b : <<include>>
+    UC1 --> UC1c : <<include>>
+
+    ' Połączenia <<extend>> (opcjonalne kroki)
+    UC1d ..|> UC1 : <<extend>> 
+    UC1e ..|> UC1c : <<extend>> 
+
+    ' Połączenia aktorów z przypadkami
+    Klient --> UC1
+    Recepcjonista --> UC1a
+    Recepcjonista --> UC1b
+    Recepcjonista --> UC1c
+    Recepcjonista --> UC1d
+    Recepcjonista --> UC1e
+}
+@enduml

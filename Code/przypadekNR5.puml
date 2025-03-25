@@ -1,0 +1,35 @@
+@startuml
+actor Klient
+actor Recepcjonista
+actor "Operator kart płatniczych" as OperatorKart
+actor Bank
+
+rectangle "System Siłowni" {
+
+    usecase "Obsługa płatności" as UC5
+    usecase "Rejestracja zakupu" as UC5a
+    usecase "Generowanie potwierdzenia zakupu" as UC5b
+    usecase "Płatność kartą" as UC5c
+    usecase "Płatność gotówką" as UC5d
+    usecase "Przetworzenie transakcji przez operatora kart" as UC5e
+    usecase "Potwierdzenie płatności przez bank" as UC5f
+
+    ' Połączenia <<include>> (obowiązkowe kroki)
+    UC5 --> UC5a : <<include>>
+    UC5 --> UC5b : <<include>>
+
+    ' Połączenia <<extend>> (opcjonalne kroki)
+    UC5c ..|> UC5 : <<extend>>
+    UC5d ..|> UC5 : <<extend>>
+    UC5e ..|> UC5c : <<extend>>
+    UC5f ..|> UC5c : <<extend>>
+
+    ' Połączenia aktorów z przypadkami
+    Klient --> UC5
+    Recepcjonista --> UC5a
+    Recepcjonista --> UC5c
+    Recepcjonista --> UC5d
+    OperatorKart --> UC5e
+    Bank --> UC5f
+}
+@enduml

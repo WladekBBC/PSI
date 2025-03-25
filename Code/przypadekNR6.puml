@@ -1,0 +1,32 @@
+@startuml
+actor Administrator
+actor Dostawca
+actor "Firma sprzątająca" as Sprzatajaca
+
+rectangle "System Siłowni" {
+
+    usecase "Zarządzanie sprzętem sportowym" as UC6
+    usecase "Sprawdzanie raportów dotyczących sprzętu" as UC6a
+    usecase "Zgłaszanie usterek do dostawcy" as UC6b
+    usecase "Wymiana lub naprawa sprzętu" as UC6c
+    usecase "Regularne czyszczenie sprzętu" as UC6d
+    usecase "Podanie terminu dostawy nowego sprzętu" as UC6e
+
+    ' Połączenia <<include>> (obowiązkowe kroki)
+    UC6 --> UC6a : <<include>>
+    UC6 --> UC6b : <<include>>
+    UC6 --> UC6c : <<include>>
+    UC6 --> UC6d : <<include>>
+
+    ' Połączenia <<extend>> (opcjonalne kroki)
+    UC6e ..|> UC6b : <<extend>>
+
+    ' Połączenia aktorów z przypadkami
+    Administrator --> UC6
+    Administrator --> UC6a
+    Administrator --> UC6b
+    Dostawca --> UC6c
+    Dostawca --> UC6e
+    Sprzatajaca --> UC6d
+}
+@enduml
