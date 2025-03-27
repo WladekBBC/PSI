@@ -1,0 +1,85 @@
+<mxfile host="65bd71144e">
+    <diagram id="Qxzz1tlQrPEmq97wb1e-" name="Strona-1">
+        <mxGraphModel dx="980" dy="663" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="Recepcjonista" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="750" y="225" width="40" height="60" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="Formularz dodania klienta" style="shape=umlBoundary;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="460" y="200" width="110" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="13" value="" style="edgeStyle=none;html=1;" parent="1" source="5" target="12" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="28" style="edgeStyle=none;html=1;" parent="1" source="5" target="25" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="5" value="Rejestrowanie&lt;div&gt;klienta&lt;/div&gt;" style="ellipse;shape=umlControl;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="260" y="215" width="86" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="6" value="Baza Danych" style="ellipse;shape=umlEntity;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="260" y="620" width="90" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="Wybór rodzaju karnetu" style="ellipse;shape=umlControl;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="50" y="215" width="86" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="17" value="Formularz dodania klienta z kartą partnerską" style="shape=umlBoundary;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="460" y="60" width="109" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="21" value="" style="endArrow=none;html=1;entryX=0;entryY=0.3333333333333333;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1.017;exitY=0.491;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="4" target="2" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="569" y="230" as="sourcePoint"/>
+                        <mxPoint x="619" y="180" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="22" value="" style="endArrow=none;html=1;entryX=0;entryY=0.3333333333333333;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" target="2" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="570" y="110" as="sourcePoint"/>
+                        <mxPoint x="650" y="140" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="23" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0.979;entryY=0.532;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="4" target="5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="24" style="edgeStyle=orthogonalEdgeStyle;html=1;entryX=0.5;entryY=0.022;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="17" target="5" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="38" style="edgeStyle=none;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;" parent="1" source="25" target="6" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="25" value="Generewanie&lt;div&gt;karty członkowskiej&lt;/div&gt;" style="ellipse;shape=umlControl;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="260" y="390" width="90" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="39" style="edgeStyle=none;html=1;entryX=1;entryY=0;entryDx=0;entryDy=0;exitX=0.315;exitY=0.902;exitDx=0;exitDy=0;exitPerimeter=0;endArrow=none;endFill=0;" parent="1" source="31" target="6" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="31" value="Formularz redagowania danych" style="shape=umlBoundary;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="490" y="430" width="110" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="33" value="" style="endArrow=none;html=1;entryX=0;entryY=0.3333333333333333;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.901;exitY=0.144;exitDx=0;exitDy=0;exitPerimeter=0;" parent="1" source="31" target="2" edge="1">
+                    <mxGeometry width="50" height="50" relative="1" as="geometry">
+                        <mxPoint x="340" y="320" as="sourcePoint"/>
+                        <mxPoint x="390" y="270" as="targetPoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="37" style="edgeStyle=none;html=1;entryX=0;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;" parent="1" source="35" target="6" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="35" value="Płatność" style="ellipse;shape=umlControl;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="50" y="420" width="90" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="36" style="edgeStyle=none;html=1;entryX=0.508;entryY=0.107;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="12" target="35" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="40" value="Nowy klient" style="shape=umlBoundary;whiteSpace=wrap;html=1;" parent="1" vertex="1">
+                    <mxGeometry x="880" y="205" width="100" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="41" style="edgeStyle=none;html=1;entryX=1;entryY=0.3333333333333333;entryDx=0;entryDy=0;entryPerimeter=0;" parent="1" source="40" target="2" edge="1">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
