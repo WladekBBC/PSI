@@ -1,0 +1,66 @@
+<mxfile host="65bd71144e">
+    <diagram name="Strona-1" id="jTIrAtqcbMBAe41HZlu_">
+        <mxGraphModel dx="116866" dy="-907" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="R5LkbAGLjqBZ2HUUASeN-1" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;strokeWidth=2;" edge="1" parent="1" source="R5LkbAGLjqBZ2HUUASeN-17" target="R5LkbAGLjqBZ2HUUASeN-12">
+                    <mxGeometry relative="1" as="geometry">
+                        <mxPoint x="-115551" y="1863" as="sourcePoint"/>
+                    </mxGeometry>
+                </mxCell>
+                <mxCell id="R5LkbAGLjqBZ2HUUASeN-3" value="Administrator" style="shape=umlActor;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;align=center;strokeWidth=2;" vertex="1" parent="1">
+                    <mxGeometry x="-114681" y="1868" width="50" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="R5LkbAGLjqBZ2HUUASeN-6" value="&lt;div&gt;&lt;span style=&quot;text-wrap-mode: nowrap;&quot;&gt;Podsumowania/&lt;/span&gt;&lt;/div&gt;&lt;span style=&quot;text-wrap-mode: nowrap;&quot;&gt;Analiza&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;text-wrap-mode: nowrap;&quot;&gt;&amp;nbsp;opinii&lt;/span&gt;&lt;/div&gt;" style="ellipse;shape=umlControl;whiteSpace=wrap;html=1;strokeWidth=2;" vertex="1" parent="1">
+                    <mxGeometry x="-115001" y="2021" width="100" height="110" as="geometry"/>
+                </mxCell>
+                <mxCell id="R5LkbAGLjqBZ2HUUASeN-9" value="Grupowanie&lt;div&gt;danych&lt;/div&gt;" style="ellipse;shape=umlControl;whiteSpace=wrap;html=1;strokeWidth=2;" vertex="1" parent="1">
+                    <mxGeometry x="-115231" y="1853" width="86" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="R5LkbAGLjqBZ2HUUASeN-12" value="&lt;span style=&quot;text-wrap-mode: nowrap;&quot;&gt;Formularz&amp;nbsp;&lt;/span&gt;&lt;div&gt;&lt;span style=&quot;text-wrap-mode: nowrap;&quot;&gt;oceny&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;text-wrap-mode: nowrap;&quot;&gt;&amp;nbsp;jakości&lt;/span&gt;&lt;/div&gt;&lt;div&gt;&lt;span style=&quot;text-wrap-mode: nowrap;&quot;&gt;&amp;nbsp;usług&lt;/span&gt;&lt;/div&gt;" style="shape=umlBoundary;whiteSpace=wrap;html=1;strokeWidth=2;" vertex="1" parent="1">
+                    <mxGeometry x="-115480" y="1863" width="106" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="R5LkbAGLjqBZ2HUUASeN-14" value="Baza danych" style="ellipse;shape=umlEntity;whiteSpace=wrap;html=1;strokeWidth=2;" vertex="1" parent="1">
+                    <mxGeometry x="-115232" y="2193" width="87" height="90" as="geometry"/>
+                </mxCell>
+                <mxCell id="R5LkbAGLjqBZ2HUUASeN-17" value="Klient" style="shape=umlActor;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;align=center;strokeWidth=2;" vertex="1" parent="1">
+                    <mxGeometry x="-115661" y="1883" width="50" height="80" as="geometry"/>
+                </mxCell>
+                <mxCell id="R5LkbAGLjqBZ2HUUASeN-22" style="rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;startFill=0;strokeWidth=2;" edge="1" parent="1" source="R5LkbAGLjqBZ2HUUASeN-19" target="R5LkbAGLjqBZ2HUUASeN-14">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="R5LkbAGLjqBZ2HUUASeN-19" value="Zapisanie opinii" style="ellipse;shape=umlControl;whiteSpace=wrap;html=1;strokeWidth=2;" vertex="1" parent="1">
+                    <mxGeometry x="-115231" y="1998" width="86" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="R5LkbAGLjqBZ2HUUASeN-24" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1.009;entryY=0.533;entryDx=0;entryDy=0;entryPerimeter=0;startArrow=none;startFill=0;endArrow=none;exitX=-0.035;exitY=0.57;exitDx=0;exitDy=0;exitPerimeter=0;strokeWidth=2;" edge="1" parent="1" source="R5LkbAGLjqBZ2HUUASeN-9" target="R5LkbAGLjqBZ2HUUASeN-12">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="R5LkbAGLjqBZ2HUUASeN-25" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.488;entryY=0.1;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;startFill=0;strokeWidth=2;" edge="1" parent="1" source="R5LkbAGLjqBZ2HUUASeN-9" target="R5LkbAGLjqBZ2HUUASeN-19">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="R5LkbAGLjqBZ2HUUASeN-26" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.111;entryY=0.9;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;startFill=0;strokeWidth=2;" edge="1" parent="1" source="R5LkbAGLjqBZ2HUUASeN-14" target="R5LkbAGLjqBZ2HUUASeN-6">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="R5LkbAGLjqBZ2HUUASeN-27" value="Strona statystyki/&lt;div&gt;Podsumowania opinii&lt;/div&gt;" style="shape=umlBoundary;whiteSpace=wrap;html=1;align=center;strokeWidth=2;" vertex="1" parent="1">
+                    <mxGeometry x="-115021" y="1858" width="125" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="R5LkbAGLjqBZ2HUUASeN-28" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.55;entryY=1.01;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;startFill=0;strokeWidth=2;" edge="1" parent="1" source="R5LkbAGLjqBZ2HUUASeN-6" target="R5LkbAGLjqBZ2HUUASeN-27">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="R5LkbAGLjqBZ2HUUASeN-30" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.983;entryY=0.36;entryDx=0;entryDy=0;entryPerimeter=0;endArrow=none;startFill=0;strokeWidth=2;" edge="1" parent="1" source="R5LkbAGLjqBZ2HUUASeN-3" target="R5LkbAGLjqBZ2HUUASeN-27">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="R5LkbAGLjqBZ2HUUASeN-32" value="Naliczenie punktów lojalnosciowych" style="ellipse;shape=umlControl;whiteSpace=wrap;html=1;strokeWidth=2;" vertex="1" parent="1">
+                    <mxGeometry x="-115466" y="2043" width="92" height="100" as="geometry"/>
+                </mxCell>
+                <mxCell id="R5LkbAGLjqBZ2HUUASeN-34" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.566;entryY=0.967;entryDx=0;entryDy=0;entryPerimeter=0;strokeWidth=2;startArrow=classic;startFill=0;endArrow=none;" edge="1" parent="1" source="R5LkbAGLjqBZ2HUUASeN-32" target="R5LkbAGLjqBZ2HUUASeN-12">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+                <mxCell id="R5LkbAGLjqBZ2HUUASeN-35" style="edgeStyle=none;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.08;entryY=0.178;entryDx=0;entryDy=0;entryPerimeter=0;strokeWidth=2;" edge="1" parent="1" source="R5LkbAGLjqBZ2HUUASeN-32" target="R5LkbAGLjqBZ2HUUASeN-14">
+                    <mxGeometry relative="1" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>
