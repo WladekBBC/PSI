@@ -1,0 +1,126 @@
+@startuml
+
+class Klient {
+  - clientID: int
+  - name: String
+  - surname: String
+  - contactInfo: String
+  + register()
+  + checkIn()
+  + updateLoyalty()
+}
+
+class MembershipCard {
+  - cardNumber: String
+  - type: String
+  - expirationDate: Date
+  + validate()
+  + generate()
+}
+
+class EntranceLog {
+  - logID: int
+  - dateTime: Date
+}
+
+class LoyaltyAccount {
+  - points: int
+  - visitCount: int
+  + addPoints()
+  + redeemPoints()
+}
+
+class Feedback {
+  - feedbackID: int
+  - rating: int
+  - comment: String
+  - date: Date
+  + submitFeedback()
+}
+
+class RegistrationForm {
+  + collectData()
+  + submit()
+}
+
+class Payment {
+  - paymentID: int
+  - amount: float
+  - method: String
+  - date: Date
+  + process()
+}
+
+class Recepcjonista {
+  - employeeID: int
+  - name: String
+  + registerClient()
+  + processPayment()
+}
+
+class PaymentOperator {
+  - operatorID: int
+  - name: String
+  + authorizePayment()
+}
+
+class Bank {
+  - bankID: int
+  - name: String
+  + processPayment()
+}
+
+class Equipment {
+  - equipmentID: int
+  - type: String
+  - status: String
+  - lastMaintenance: Date
+  + reportFault()
+  + scheduleMaintenance()
+}
+
+class EquipmentReport {
+  - reportID: int
+  - description: String
+  - status: String
+  - reportedDate: Date
+  + updateStatus()
+}
+
+class Administrator {
+  - adminID: int
+  - name: String
+  + viewReports()
+  + manageEquipment()
+}
+
+class Supplier {
+  - supplierID: int
+  - name: String
+  - contactInfo: String
+  + repairEquipment()
+}
+
+class CleaningService {
+  - serviceID: int
+  - companyName: String
+  - schedule: String
+  + performCleaning()
+}
+
+Klient "1" -- "1" MembershipCard : posiada >
+MembershipCard "0..*" -- "1" EntranceLog : rejestruje >
+Klient "1" -- "1" LoyaltyAccount : posiada >
+LoyaltyAccount "0..*" -- "1" Feedback : przyznaje >
+RegistrationForm ..> Klient : tworzy >
+RegistrationForm ..> MembershipCard : tworzy >
+MembershipCard -- Payment : generuje >
+Recepcjonista -- Payment : przetwarza >
+Recepcjonista -- PaymentOperator : współpracuje >
+PaymentOperator -- Bank : autoryzuje >
+Equipment -- EquipmentReport : generuje >
+Administrator -- Equipment : zarządza >
+Administrator -- Supplier : zgłasza usterki >
+CleaningService -- Equipment : czyści >
+
+@enduml

@@ -1,0 +1,49 @@
+@startuml
+
+class Klient {
+  
+}
+
+class MembershipCard {
+ 
+}
+
+class Karnet {
+ 
+}
+
+class Recepcjonista {
+  
+}
+
+class SystemSI {
+  
+}
+
+class SprzętSportowy {
+  
+}
+
+class Administrator {
+  
+}
+
+class Dostawca {
+  
+}
+
+class FirmaSprzątająca {
+  
+}
+
+Klient --o MembershipCard : posiada
+Klient --o Karnet : wykupuje
+Klient -- SystemSI : używa
+Recepcjonista -- Klient : rejestruje >
+Recepcjonista -- Karnet : sprzedaje >
+SystemSI -- SprzętSportowy : monitoruje
+Administrator -- SprzętSportowy : zarządza
+Administrator -- Dostawca : zgłasza usterki >
+FirmaSprzątająca -- SprzętSportowy : czyści >
+
+@enduml
