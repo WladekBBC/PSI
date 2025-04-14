@@ -1,0 +1,29 @@
+@startuml
+object "klient2 : Klient" as klient {
+  imię = "Anna"
+  nazwisko = "Nowak"
+  punktyLojalnościowe = 45
+  idKlienta = 1234
+}
+
+object "system : SystemSI" as system {
+  + wyświetlFormularz()
+  + zapiszOpinię()
+  + analizujStatystyki()
+}
+
+object "formularz1 : FormularzOceny" as formularz {
+  ocena = 2
+  komentarz = "Brak ręczników w szatni"
+}
+
+object "admin1 : Administrator" as admin {
+  + analizujProblemy()
+  + reaguj()
+}
+
+klient -- system 
+system -- formularz
+klient -- formularz
+system -- admin 
+@enduml

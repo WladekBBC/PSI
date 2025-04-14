@@ -1,0 +1,31 @@
+@startuml
+object "klient4 : Klient" as klient {
+  imię = "Katarzyna"
+  nazwisko = "Mazur"
+  punktyLojalnościowe = 45
+  idKlienta = 1333
+}
+
+object "system : SystemSI" as system {
+  + rejestrujWejście()
+  + naliczPunkty()
+  + sprawdźNagrody()
+}
+
+object "historia : HistoriaWejść" as historia {
+  liczbaWejść = 15
+  ostatniaWizyta = "2025-04-08"
+}
+
+object "nagroda1 : Nagroda" as nagroda {
+  nazwa = "Zniżka 20% na karnet"
+  kosztPunktowy = 50
+  dostępna = false
+}
+
+klient -- system 
+system -- historia 
+system -- nagroda 
+
+
+@enduml

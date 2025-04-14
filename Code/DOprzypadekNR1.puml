@@ -1,0 +1,43 @@
+@startuml
+object "klient1 : Klient" as klient {
+  imię = "Jan"
+  nazwisko = "Kowalski"
+  punktyLojalnościowe = 0
+  idKlienta = 1238
+}
+
+object "karnet1 : Karnet" as karnet {
+  typ = "Miesięczny"
+  cena = 120.00
+}
+
+object "karta1 : KartaCzłonkowska" as karta {
+  numer = "12345678"
+  dataWydania = "2025-04-09"
+}
+
+object "kartaMultisport1 : KartaPartnerska" as kartaPartnerska {
+  typ = "Multisport"
+  numer = "MS12345"
+}
+
+object "system : SystemRejestracji" as system {
+  + generujKartę()
+  + zarejestrujKlienta()
+}
+
+object "recepcjonista1 : Pracownik" as recepcjonista {
+  imię = "Adam"
+  nazwisko = "Banan"
+  + wprowadźDane()
+  + korygujBłędy()
+}
+
+klient -- recepcjonista  
+recepcjonista -- system 
+system -- karta 
+klient -- karta 
+klient -- karnet
+klient -- kartaPartnerska 
+
+@enduml

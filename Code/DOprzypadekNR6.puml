@@ -1,0 +1,37 @@
+@startuml
+object "admin1 : Administrator" as admin {
+  imię = "Marek"
+  nazwisko = "Zieliński"
+  + sprawdźStany()
+  + informujDostawce()
+}
+
+object "raportSprzętu1 : RaportSprzętu" as raportS {
+  sprzęt = "Bieżnia 03"
+  status = "Uszkodzona taśma"
+  data = "2025-04-08"
+}
+
+object "raportDoDostawcy1 : raportDoDostawcy" as raportD {
+  sprzęt = "Bieżnia 03"
+  status = "Uszkodzona taśma"
+  data = "2025-04-08"
+}
+
+object "dostawca1 : Dostawca" as dostawca {
+  nazwa = "FitTech Polska"
+  dostępność = false
+  terminDostawy = "2025-04-15"
+}
+
+object "firma1 : FirmaSprzątająca" as firma {
+  nazwa = "CzystaForma"
+  + zgłośUsterkę()
+}
+
+admin -- raportD
+raportS -- admin
+raportD -- dostawca
+firma -- raportS
+
+@enduml

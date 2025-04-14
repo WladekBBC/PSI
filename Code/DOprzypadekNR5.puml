@@ -1,0 +1,42 @@
+@startuml
+object "klient3 : Klient" as klient {
+  imię = "Tomasz"
+  nazwisko = "Wiśniewski"
+  metodaPłatności = "karta"
+  idKlienta = 3333
+}
+
+object "recepcjonista2 : Recepcjonista" as recepcjonista {
+  imię = "Ewa"
+  nazwisko = "Kamińska"
+  + rejestrujZakup()
+}
+
+object "produkt1 : Produkt" as produkt {
+  nazwa = "Karnet miesięczny"
+  cena = 120.00
+}
+
+object "system : SystemPłatności" as system {
+  + zarejestrujZakup()
+  + generujPotwierdzenie()
+}
+
+object "operator : OperatorKart" as operator {
+  nazwa = "PaySecure"
+  status = "Autoryzacja OK"
+}
+
+object "bank : Bank" as bank {
+  nazwa = "Bank Polska"
+  saldo = "nieujawnione"
+}
+
+klient -- produkt 
+recepcjonista -- system 
+klient -- system 
+system -- operator 
+operator -- bank 
+
+
+@enduml

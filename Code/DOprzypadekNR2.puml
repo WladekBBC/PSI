@@ -1,0 +1,35 @@
+@startuml
+object "klient1 : Klient" as klient {
+  imię = "Jan"
+  nazwisko = "Kowalski"
+  punktyLojalnościowe = 0
+  idKlienta = 1238
+}
+
+object "karta1 : KartaCzłonkowska" as karta {
+  numer = "123456789"
+  ważna = true
+  dataWydania = "2025-04-01"
+}
+
+object "system : SystemSI" as system {
+  + sprawdźKarnet()
+  + zarejestrujWejście()
+}
+
+object "rejestr : RejestrWejść" as rejestr {
+  listaWejść = [...]
+}
+
+object "recepcjonista1 : Recepcjonista" as recepcjonista {
+   imię = "Adam"
+   nazwisko = "Banan"
+  + wprowadźDane()
+}
+
+klient -- karta 
+klient -- system 
+system -- rejestr 
+recepcjonista -- system 
+
+@enduml
