@@ -1,4 +1,7 @@
 # Baza Danych SigmaGym
+### Klient
+-- Tabela przechowuje dane osobowe i kontaktowe klientów siłowni.
+-- Używana jako punkt odniesienia w wielu innych tabelach (np. karta, faktura, feedback).
 ```sql
 -- Klient
 CREATE TABLE Klient (
@@ -14,7 +17,9 @@ CREATE TABLE Klient (
     dataRejestracji DATE
 ) ENGINE=InnoDB;
 ```
-
+### Karta SigmaGym
+-- Powiązana z klientem, reprezentuje członkostwo w siłowni.
+-- Zawiera informacje o typie karty, jej ważności oraz statusie.
 ```sql
 -- Karta SigmaGym
 CREATE TABLE MembershipCard (
@@ -26,7 +31,9 @@ CREATE TABLE MembershipCard (
     FOREIGN KEY (klientID) REFERENCES Klient(klientID)
 ) ENGINE=InnoDB;
 ```
-
+### Rejestracja wejść
+-- Rejestruje każde wejście klienta na siłownię.
+-- Służy do analizy aktywności i może wspierać system lojalnościowy.
 ```sql
 -- Rejestracja wejscia
 CREATE TABLE EntranceLog (
@@ -36,7 +43,8 @@ CREATE TABLE EntranceLog (
     FOREIGN KEY (numerKarty) REFERENCES MembershipCard(numerKarty)
 ) ENGINE=InnoDB;  
 ```
-
+### "Konto lojalnościowe"
+-- Zlicza punkty i wizyty klienta, wspiera programy nagród i zniżek.
 ```sql
 -- "Konto lajalnościowe"
 CREATE TABLE LoyaltyAccount (
@@ -46,6 +54,9 @@ CREATE TABLE LoyaltyAccount (
     FOREIGN KEY (klientID) REFERENCES Klient(klientID)
 ) ENGINE=InnoDB;
 ```
+### Feedback
+-- Klienci mogą zostawić ocenę i komentarz nt. usług siłowni.
+-- Może służyć do poprawy jakości obsługi i infrastruktury.
 
 ```sql
 -- Feedback
@@ -58,7 +69,8 @@ CREATE TABLE Feedback (
     FOREIGN KEY (klientID) REFERENCES Klient(klientID)
 ) ENGINE=InnoDB;
 ```
-
+### Operator płatności
+-- Przechowuje informacje o zewnętrznych dostawcach usług płatniczych.
 ```sql
 -- Operator płatnosci 
 CREATE TABLE PaymentOperator (
@@ -66,7 +78,8 @@ CREATE TABLE PaymentOperator (
     nazwa VARCHAR(100)
 ) ENGINE=InnoDB;
 ```
-
+### Faktura
+-- Przechowuje informacje o fakturach wystawianych klientom.
 ```sql
 -- Faktura
 CREATE TABLE Faktura (
@@ -81,7 +94,9 @@ CREATE TABLE Faktura (
     FOREIGN KEY (klientID) REFERENCES Klient(klientID)
 ) ENGINE=InnoDB;
 ```
-
+### Płatność
+-- Powiązana z fakturą, karta klienta oraz operatorem.
+-- Służy do ewidencji wpłat.
 ```sql
 -- Płatność
 CREATE TABLE Payment (
@@ -97,7 +112,9 @@ CREATE TABLE Payment (
     FOREIGN KEY (operatorID) REFERENCES PaymentOperator(operatorID)
 ) ENGINE=InnoDB;
 ```
-
+### Recepcjonista
+-- Tabela przechowuje dane pracowników recepcji.
+-- Recepcjoniści mogą być przypisani do konkretnych operatorów płatności.
 ```sql
 -- Recepcjonista
 CREATE TABLE Recepcjonista (
@@ -107,7 +124,8 @@ CREATE TABLE Recepcjonista (
     email VARCHAR(100)
 ) ENGINE=InnoDB;
 ```
-
+### Bank
+-- Lista banków współpracujących z operatorami płatności.
 ```sql
 -- Bank
 CREATE TABLE Bank (
@@ -115,7 +133,8 @@ CREATE TABLE Bank (
     nazwa VARCHAR(100)
 ) ENGINE=InnoDB;
 ```
-
+### Recepcjonista-OperatorPłatności
+-- Tabela pośrednia określająca, który recepcjonista obsługuje którego operatora płatności.
 ```sql
 -- Recepcjonista_PaymentOperator
 CREATE TABLE Recepcjonista_PaymentOperator (
@@ -126,7 +145,8 @@ CREATE TABLE Recepcjonista_PaymentOperator (
     FOREIGN KEY (operatorID) REFERENCES PaymentOperator(operatorID)
 ) ENGINE=InnoDB;
 ```
-
+### Autoryzacja płatności
+-- Relacja między operatorami płatności a bankami, z którymi mają autoryzację.
 ```sql
 -- Autoryzacja płatności
 CREATE TABLE PaymentAuthorization (
@@ -137,7 +157,8 @@ CREATE TABLE PaymentAuthorization (
     FOREIGN KEY (bankID) REFERENCES Bank(bankID)
 ) ENGINE=InnoDB;
 ```
-
+### Sprzęt
+-- Lista sprzętów dostępnych w siłowni. Zawiera typ, status i datę ostatniego serwisu.
 ```sql
 -- Sprzęt
 CREATE TABLE Equipment (
@@ -147,7 +168,8 @@ CREATE TABLE Equipment (
     ostatniSerwis DATE
 ) ENGINE=InnoDB;
 ```
-
+### Zgłoszenie usterki
+-- Rejestruje zgłoszenia usterek danego sprzętu.
 ```sql
 -- Zgłoszenie usterki
 CREATE TABLE EquipmentReport (
@@ -159,7 +181,8 @@ CREATE TABLE EquipmentReport (
     FOREIGN KEY (equipmentID) REFERENCES Equipment(equipmentID)
 ) ENGINE=InnoDB;
 ```
-
+### Administrator
+-- Tabela przechowuje administratorów zarządzających sprzętem i infrastrukturą siłowni.
 ```sql
 -- Administrator
 CREATE TABLE Administrator (
@@ -168,7 +191,8 @@ CREATE TABLE Administrator (
     nazwisko VARCHAR(100)
 ) ENGINE=InnoDB;
 ```
-
+### Relacja Administrator-Sprzęt
+-- Określa, który administrator odpowiada za który sprzęt.
 ```sql
 -- Relacja Administrator_Sprzęt
 CREATE TABLE Administrator_Equipment (
@@ -179,7 +203,8 @@ CREATE TABLE Administrator_Equipment (
     FOREIGN KEY (equipmentID) REFERENCES Equipment(equipmentID)
 ) ENGINE=InnoDB;
 ```
-
+### Dostawca
+-- Dane kontaktowe dostawców sprzętu lub usług dla siłowni.
 ```sql
 -- Dostawca
 CREATE TABLE Supplier (
@@ -188,7 +213,8 @@ CREATE TABLE Supplier (
     kontakt VARCHAR(255)
 ) ENGINE=InnoDB;
 ```
-
+### Zapis zgłoszenia usterki
+-- Powiązanie zgłoszenia sprzętu z odpowiedzialnym dostawcą.
 ```sql
 -- Zgłoszenie usterki do dostawcy
 CREATE TABLE EquipmentSupplierReport (
@@ -199,7 +225,8 @@ CREATE TABLE EquipmentSupplierReport (
     FOREIGN KEY (supplierID) REFERENCES Supplier(supplierID)
 ) ENGINE=InnoDB;
 ```
-
+### Firma sprzątająca
+-- Dane firm sprzątających współpracujących z siłownią, wraz z harmonogramem.
 ```sql
 -- Firma sprzątająca
 CREATE TABLE CleaningService (
@@ -208,6 +235,8 @@ CREATE TABLE CleaningService (
     harmonogram VARCHAR(255)
 ) ENGINE=InnoDB;
 ```
+### Relacja FirmaSprząt-Sprzęt
+-- Informuje, która firma sprząta który sprzęt lub strefę.
 ```sql
 -- Relacja FirmaSprzątająca_Sprzęt
 CREATE TABLE CleaningService_Equipment (
@@ -218,7 +247,8 @@ CREATE TABLE CleaningService_Equipment (
     FOREIGN KEY (equipmentID) REFERENCES Equipment(equipmentID)
 ) ENGINE=InnoDB;
 ```
-
+### Formularz rejestracji
+-- Formularze zgłoszeniowe klientów – powiązane z klientem i jego kartą.
 ```sql
 -- Formularz rejestracji
 CREATE TABLE RegistrationForm (
