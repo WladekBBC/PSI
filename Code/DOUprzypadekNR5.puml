@@ -1,0 +1,98 @@
+@startuml
+!pragma layout smetana
+left to right direction
+skinparam Padding 5
+
+' 🔍 Klasy
+class Klient {
+  - klientID: int
+  - imie: String
+  - nazwisko: String
+  - email: String
+  - telefon: String
+  - nip: String
+  - dataRejestracji: Date
+  --
+  + zarejestrujSie()
+  + odnotujWejscie()
+  + aktualizujKontoLojalnosciowe()
+  + zglosOpinie(opinia: Opinia)
+}
+
+class Bank {
+  - bankID: int
+  - nazwa: String
+  --
+  + przetworzPlatnoscBankowa()
+}
+
+class KontoLojalnosciowe {
+  - punkty: int
+  --
+  + dodajPunkty(ilosc: int)
+  + wykorzystajPunkty(ilosc: int)
+  + zwiekszLiczbeWizyt()
+}
+
+class Faktura {
+  - idFaktura: int
+  - dataWystawienia: Date
+  - dataPlatnosci: Date
+  - kwota: double
+  - status: StatusFaktury
+  - nip: String
+  - uwagi: String
+}
+
+class Platnosc {
+  - paymentID: int
+  - kwota: double
+  - dataPlatnosci: Date
+  --
+  + przetworz()
+}
+
+class MetodaPlatnosci {
+  - metodaID: int
+  - nazwa: String
+}
+
+class Recepcjonista {
+  - recepcjonistaID: int
+  - imie: String
+  - nazwisko: String
+  - email: String
+  --
+  + zarejestrujKlienta()
+  + przetworzPlatnosc()
+}
+
+class OperatorPlatnosci {
+  - operatorID: int
+  - nazwa: String 
+  --
+  + autoryzujPlatnosc()
+}
+
+' 🔗 Relacje logiczne
+Klient "1" *-- "1" KontoLojalnosciowe : posiada >
+Klient "1" -- "0..*" Faktura : otrzymuje >
+
+Faktura "1" -- "0..*" Platnosc : obejmuje >
+Platnosc "0..*" -- "1" MetodaPlatnosci : używa >
+Platnosc "0..*" -- "1" OperatorPlatnosci : autoryzowana przez >
+
+OperatorPlatnosci "0..*" -- "1" Bank : powiązany z >
+Recepcjonista "0..*" -- "0..*" OperatorPlatnosci : współpracuje z >
+
+Recepcjonista ..> Klient : rejestruje
+Recepcjonista ..> Platnosc : przetwarza
+
+' 👻 Ukryte relacje dla wymuszenia sąsiedztwa (bez wpływu na logikę)
+Klient ..> KontoLojalnosciowe : hidden
+Faktura ..> Platnosc : hidden
+Platnosc ..> MetodaPlatnosci : hidden
+MetodaPlatnosci ..> OperatorPlatnosci : hidden
+Recepcjonista ..> Bank : hidden
+
+@enduml

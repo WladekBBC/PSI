@@ -1,0 +1,235 @@
+@startuml
+
+
+skinparam classAttributeIconSize 0
+skinparam defaultFontName Arial
+skinparam defaultFontSize 12
+skinparam packageStyle rect
+
+package ModelSigmaGym {
+
+  class Klient {
+    - klientID: int
+    - imie: String
+    - nazwisko: String
+    - email: String
+    - telefon: String
+    - nip: String
+    - dataRejestracji: Date
+    ' adresID jest FK, reprezentowany przez relację do Adres
+    --
+    + zarejestrujSie()
+    + odnotujWejscie()
+    + aktualizujKontoLojalnosciowe()
+    + zglosOpinie(opinia: Opinia)
+  }
+
+  class Adres {
+    - adresID: int
+    - ulica: String
+    - miasto: String
+    - kodPocztowy: String
+    - kraj: String
+  }
+
+  class KontoLojalnosciowe {
+    ' idKlient jest PK/FK, reprezentowany przez relację do Klient
+    - punkty: int
+    - liczbaWizyt: int
+    --
+    + dodajPunkty(ilosc: int)
+    + wykorzystajPunkty(ilosc: int)
+    + zwiekszLiczbeWizyt()
+  }
+
+  class Opinia {
+    - feedbackID: int
+    ' idKlient jest FK, reprezentowany przez relację do Klient
+    - ocena: int
+    - komentarz: String
+    - data: Date
+    --
+    + wyslijOpinie()
+  }
+
+  class KartaCzlonkowska {
+    - numerKarty: String {PK}
+    ' idKlient jest FK, reprezentowany przez relację do Klient
+    ' idTypKarty jest FK, reprezentowany przez relację do TypKarty
+    - dataAktywacji: Date
+    - status: StatusKartyCzlonkowskiej
+    --
+    + sprawdzWaznosc(): boolean
+    + dodajDoRejestruWejsc(wpis: DziennikWejsc)
+    + aktywujKarte()
+  }
+
+  class TypKarty {
+    - idTypKarty: int
+    - nazwaKarty: String
+    - wartosc: String <<DB: VARCHAR(50), rozważ zmianę na numeryczny>>
+  }
+
+  class DziennikWejsc {
+    - logID: int
+    ' numerKarty jest FK, reprezentowany przez relację do KartaCzlonkowska
+    - dataWejscia: Date <<lub DateTime>>
+  }
+
+  class FormularzRejestracyjny {
+    - formID: int
+    ' idKlient jest FK, reprezentowany przez relację do Klient
+    ' numerKarty jest FK, reprezentowany przez relację do KartaCzlonkowska
+    - dataZlozenia: Date
+    --
+    + zbierzDane()
+    + zlozFormularz(): Klient ' Zwraca utworzonego Klienta lub Kartę
+  }
+
+  class Faktura {
+    - idFaktura: int
+    ' klientID jest FK, reprezentowany przez relację do Klient
+    - dataWystawienia: Date
+    - dataPlatnosci: Date
+    - kwota: double
+    - status: StatusFaktury
+    - nip: String
+    - uwagi: String
+  }
+
+  class Platnosc {
+    - paymentID: int
+    ' idFaktura jest FK, reprezentowany przez relację do Faktura
+    - kwota: double
+    ' metodaID jest FK, reprezentowany przez relację do MetodaPlatnosci
+    ' operatorID jest FK, reprezentowany przez relację do OperatorPlatnosci
+    - dataPlatnosci: Date
+    --
+    + przetworz()
+  }
+
+  class MetodaPlatnosci {
+    - metodaID: int
+    - nazwa: String
+  }
+
+  class Recepcjonista {
+    - recepcjonistaID: int
+    - imie: String
+    - nazwisko: String
+    - email: String
+    --
+    + zarejestrujKlienta(daneKlienta: Object): Klient
+    + przetworzPlatnosc(platnosc: Platnosc)
+  }
+
+  class OperatorPlatnosci {
+    - operatorID: int
+    - nazwa: String <<nazwa operatora np. terminal, system>>
+    ' bankID jest FK, reprezentowany przez relację do Bank
+    --
+    + autoryzujPlatnosc(szczegolyPlatnosci: Platnosc): boolean
+  }
+
+  class Bank {
+    - bankID: int
+    - nazwa: String
+    --
+    + przetworzPlatnoscBankowa(szczegoly: String)
+  }
+
+  class Administrator {
+    - adminID: int
+    - login: String
+    - haslo: String <<zaszyfrowane>>
+    - nazwisko: String
+    --
+    + przegladajRaporty()
+    + zarzadzajSprzetem(sprzet: Sprzet)
+    + dodajRaportSprzetu(raport: RaportSprzetu)
+  }
+
+  class Sprzet {
+    - equipmentID: int
+    - typ: String
+    - status: StatusSprzetu
+    - dataOstSerwisu: Date
+    --
+    + zglosUsterke(): RaportSprzetu
+    + zaplanujSerwis()
+    + aktualizujStatus(nowyStatus: StatusSprzetu)
+  }
+
+  class RaportSprzetu {
+    - reportID: int
+    ' equipmentID jest FK, reprezentowany przez relację do Sprzet
+    - opis: String
+    - status: StatusRaportu
+    - dataZgloszenia: Date
+    --
+    + aktualizujStatus(nowyStatus: StatusRaportu)
+  }
+
+  class Dostawca {
+    - supplierID: int
+    - nazwa: String
+    - telefon: String
+    - kontakt: String <<osoba kontaktowa>>
+    --
+    + naprawSprzet(raport: RaportSprzetu)
+  }
+
+  class SerwisSprzatajacy {
+    - serviceID: int
+    - nazwaFirmy: String
+    - harmonogram: String
+    --
+    + wykonajCzyszczenie(sprzet: Sprzet)
+  }
+}
+
+
+Klient "1" *-- "1" Adres : posiada >
+Klient "1" *-- "1" KontoLojalnosciowe : posiada >
+Klient "1" -- "0..*" Opinia : zglasza >
+Klient "1" -- "0..*" KartaCzlonkowska : posiada >
+Klient "1" -- "0..*" Faktura : otrzymuje >
+
+KartaCzlonkowska "0..*" -- "1" TypKarty : jest typu >
+KartaCzlonkowska "1" -- "0..*" DziennikWejsc : rejestruje wejścia >
+
+FormularzRejestracyjny "0..*" -- "1" Klient : dotyczy klienta >
+FormularzRejestracyjny "0..*" -- "1" KartaCzlonkowska : dotyczy karty > ' Zakładając, że formularz może dotyczyć istniejącej karty lub jej odnowienia
+
+Faktura "1" -- "0..*" Platnosc : obejmuje >
+Platnosc "0..*" -- "1" MetodaPlatnosci : używa >
+Platnosc "0..*" -- "1" OperatorPlatnosci : autoryzowana przez >
+
+OperatorPlatnosci "0..*" -- "1" Bank : powiązany z >
+
+Sprzet "1" -- "0..*" RaportSprzetu : posiada raporty >
+
+Recepcjonista "0..*" -- "0..*" OperatorPlatnosci : współpracuje z >
+
+' SigmaGym_EquipmentSupplierReport
+RaportSprzetu "0..*" -- "0..*" Dostawca : obsługiwany przez >
+
+
+Sprzet "0..*" -- "0..*" SerwisSprzatajacy : sprzątany przez >
+
+
+FormularzRejestracyjny ..> Klient : tworzy / aktualizuje
+FormularzRejestracyjny ..> KartaCzlonkowska : tworzy / aktualizuje
+
+Recepcjonista ..> Klient : rejestruje
+Recepcjonista ..> Platnosc : przetwarza
+
+Administrator ..> Sprzet : zarządza
+Administrator ..> RaportSprzetu : zarządza raportami
+
+
+SerwisSprzatajacy ..> Sprzet : czyści
+Dostawca ..> RaportSprzetu : realizuje naprawę na podstawie >
+
+
+@enduml
